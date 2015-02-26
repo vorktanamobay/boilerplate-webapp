@@ -1,0 +1,36 @@
+<included>
+
+    <property scope="context" name="logs.prefix" value="${base.dir}/logs" />
+    <property scope="context" name="latest.prefix" value="latest-${HOSTNAME}" />
+    <property scope="context" name="app.prefix" value="boilerplate-webapp-${HOSTNAME}" />
+
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logs.prefix}/${latest.prefix}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${logs.prefix}/archive/${app.prefix}-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%thread] [%logger{5} (%file:%line\)] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- STDOUT for Local Dev Only -->
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] [%thread] [%logger{5} (%file:%line\)] %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+
+    <root level="info">
+        <!--<appender-ref ref="STDOUT" />-->
+        <appender-ref ref="FILE" />
+    </root>
+
+</included>

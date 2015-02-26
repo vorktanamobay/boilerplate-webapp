@@ -1,0 +1,18 @@
+<!-- DEV MS SOL SERVER-->
+
+<Resource auth="Container"
+        name="jdbc/example_db"
+        driverClassName="net.sourceforge.jtds.jdbc.Driver"
+        maxActive="100"
+        maxIdle="20"
+        maxWait="10000"
+        minIdle="5"
+        type="javax.sql.DataSource"
+        url="jdbc:jtds:sqlserver://localhost:1433/example_db;SelectMethod=cursor;"
+        username="sa"
+        password="password"
+        validationQuery="select 1;"
+        validationQueryTimeout="5"
+        testOnBorrow="true"
+        />
+
